@@ -89,6 +89,13 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1s forwards;
         }
+        .hearts {
+            position: absolute;
+            font-size: 1.5em;
+            color: red;
+            pointer-events: none;
+            animation: float 1.5s linear forwards;
+        }
         .card img {
             width: 80%;
             height: 80%;
@@ -145,6 +152,18 @@
             setTimeout(() => symbol.remove(), 6000);
         }
         setInterval(createSymbol, 200);
+        document.addEventListener("mousemove", function(event) {
+            if (Math.random() < 0.2) { // Giảm tần suất tạo trái tim
+                const heart = document.createElement("div");
+                heart.classList.add("hearts");
+                heart.style.left = `${event.clientX}px`;
+                heart.style.top = `${event.clientY}px`;
+                heart.innerHTML = "❤️";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 1500);
+            }
+        });
     </script>
+    
 </body>
 </html>
